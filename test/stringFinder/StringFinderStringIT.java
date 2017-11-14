@@ -70,6 +70,25 @@ public class StringFinderStringIT {
     assertEquals(expResult, result);
 
   }
+  
+  @Test(expected = NullPointerException.class) 
+  public void testAddMainStringExseption() {
+    System.out.println("testAddMainStringExseption");
+
+    assertEquals(null, new StringFinderString().addMainString(null));
+  }
+  @Test
+  public void testAddMainStringExseption2() {
+    System.out.println("testAddMainStringExseption2");
+
+    try {
+        new StringFinderString().addMainString(null);
+        fail("Expected an NullPointerException to be thrown");
+    } catch (NullPointerException anNullPointerException) {
+        assertEquals(anNullPointerException.getMessage(), null);
+    }
+  }
+  
 
   /**
    * Test of compareLastWords method, of class StringFinderString.
@@ -111,55 +130,19 @@ public class StringFinderStringIT {
     result = instance.compareLastWords(patternString);
     assertEquals(expResult, result);
   }
+  
 
   /**
-   * Test of compareWords method, of class StringFinderString.
+   * Test of getWordsListSize method, of class StringFinderString.
    */
   @Test
-  public void testCompareWords() {
-    System.out.println("compareWords");
-    CharSequence finderString = null;
-    CharSequence patternString = null;
-    StringFinderString instance = new StringFinderString();
-    boolean expResult = true;
-    boolean result = true;
+  public void testGetWordsListSize() {
+    System.out.println("getWordsListSize");
     
-    finderString = "B";
-    patternString = "B";
-    expResult = true;
-    result = instance.compareWords(finderString, patternString);
-    assertEquals(expResult, result);
+    assertEquals(0, new StringFinderString().addMainString("").getWordsListSize());
     
-    finderString = "Baz";
-    patternString = "B";
-    expResult = true;
-    result = instance.compareWords(finderString, patternString);
-    assertEquals(expResult, result);
-    
-    finderString = "Baz";
-    patternString = "Bz";
-    expResult = false;
-    result = instance.compareWords(finderString, patternString);
-    assertEquals(expResult, result);
-    
-    finderString = "Baz";
-    patternString = "B*z";
-    expResult = true;
-    result = instance.compareWords(finderString, patternString);
-    assertEquals(expResult, result);
-    
-    finderString = "Baz";
-    patternString = "B*a";
-    expResult = false;
-    result = instance.compareWords(finderString, patternString);
-    assertEquals(expResult, result);
-    
-    finderString = "Baz";
-    patternString = "B*";
-    expResult = true;
-    result = instance.compareWords(finderString, patternString);
-    assertEquals(expResult, result);
-    
+    assertEquals(1, new StringFinderString().addMainString("B").getWordsListSize());
   }
   
-}
+
+ }

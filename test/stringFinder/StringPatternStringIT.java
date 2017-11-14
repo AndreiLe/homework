@@ -84,6 +84,13 @@ public class StringPatternStringIT {
     result = instance.addMainString(mainString).getWordList();
     assertEquals(expResult, result);
   }
+  
+  @Test(expected = NullPointerException.class) 
+  public void testAddMainStringExseption() {
+    System.out.println("testAddMainStringExseption");
+
+    assertEquals(null, new StringPatternString().addMainString(null));
+  }
 
   /**
    * Test of isLastCharacterWhitespace method, of class StringPatternString.
@@ -106,6 +113,20 @@ public class StringPatternStringIT {
     assertEquals(expResult, result);
 
   }
+
+  /**
+   * Test of getWordsListSize method, of class StringPatternString.
+   */
+  @Test
+  public void testGetWordsListSize() {
+    System.out.println("getWordsListSize");
+    
+    assertEquals(0, new StringPatternString().addMainString("").getWordsListSize());
+    
+    assertEquals(1, new StringPatternString().addMainString("B").getWordsListSize());
+  }
+  
+  
 
   
 }

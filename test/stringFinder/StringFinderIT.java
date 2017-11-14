@@ -28,13 +28,6 @@ public class StringFinderIT {
   public void tearDown() {
   }
 
-  /**
-   * Test of addFinderText method, of class StringFinder.
-   */
-  @Test
-  public void testAddFinderText() {
-  }
-
   @Test
   public void testContains() {
     System.out.println("contains");

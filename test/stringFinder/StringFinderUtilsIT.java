@@ -34,46 +34,18 @@ public class StringFinderUtilsIT {
   @Test
   public void testGetFirstChar() {
     System.out.println("getFirstChar");
-    CharSequence string = null;
-    int lastChar = 0;
-    int expResult = 0;
-    int result = 0;
-    
-    string = null;
-    lastChar = 0;
-    expResult = 0;
-    result = StringFinderUtils.getFirstChar(string, lastChar);
-    assertEquals(expResult, result);
-    
-    string = "";
-    lastChar = 0;
-    expResult = 0;
-    result = StringFinderUtils.getFirstChar(string, lastChar);
-    assertEquals(expResult, result);
 
-    string = "abc";
-    lastChar = 3;
-    expResult = 0;
-    result = StringFinderUtils.getFirstChar(string, lastChar);
-    assertEquals(expResult, result);
+    assertEquals(0, StringFinderUtils.getFirstChar(null, 0));
     
-    string = "   abc";
-    lastChar = 6;
-    expResult = 3;
-    result = StringFinderUtils.getFirstChar(string, lastChar);
-    assertEquals(expResult, result);
+    assertEquals(0, StringFinderUtils.getFirstChar("", 0));
     
-    string = "abc.abc";
-    lastChar = 7;
-    expResult = 4;
-    result = StringFinderUtils.getFirstChar(string, lastChar);
-    assertEquals(expResult, result);
+    assertEquals(0, StringFinderUtils.getFirstChar("abc", 3));
     
-    string = "abc.abc.abc";
-    lastChar = 11;
-    expResult = 8;
-    result = StringFinderUtils.getFirstChar(string, lastChar);
-    assertEquals(expResult, result);
+    assertEquals(3, StringFinderUtils.getFirstChar("   abc", 6));
+
+    assertEquals(4, StringFinderUtils.getFirstChar("abc.abc", 7));
+    
+    assertEquals(8, StringFinderUtils.getFirstChar("abc.abc.abc", 11));
   }
 
   /**
@@ -82,70 +54,34 @@ public class StringFinderUtilsIT {
   @Test
   public void testGetLastChar() {
     System.out.println("getLastChar");
-    CharSequence string = null;
-    int expResult = 0;
-    int result = 0;
+
+    assertEquals(1, StringFinderUtils.getLastChar("a"));
     
-    string = "a";
-    expResult = 1;
-    result = StringFinderUtils.getLastChar(string);
-    assertEquals(expResult, result);
+    assertEquals(3, StringFinderUtils.getLastChar("abc"));
     
-    string = "abc";
-    expResult = 3;
-    result = StringFinderUtils.getLastChar(string);
-    assertEquals(expResult, result);
-    
-    string = "abc   ";
-    expResult = 3;
-    result = StringFinderUtils.getLastChar(string);
-    assertEquals(expResult, result);
-    
-    string = "abc     ";
-    expResult = 3;
-    result = StringFinderUtils.getLastChar(string);
-    assertEquals(expResult, result);
+    assertEquals(3, StringFinderUtils.getLastChar("abc   "));
+
+    assertEquals(3, StringFinderUtils.getLastChar("abc     "));
   }
 
   /**
-   * Test of getNameString method, of class StringFinderUtils.
+   * Test of getName method, of class StringFinderUtils.
    */
   @Test
-  public void testGetNameString_3args() {
+  public void testGetNameString() {
     System.out.println("getNameString");
-    CharSequence mainString = null;
-    int firstCharPosition = 0;
-    int lastCharPosition = 0;
-    CharSequence expResult = null;
-    CharSequence result = null;
 
-    mainString = "A";
-    firstCharPosition = 0;
-    lastCharPosition = 1;
-    expResult = "A";
-    result = StringFinderUtils.getNameString(mainString, firstCharPosition, lastCharPosition);
-    assertEquals(expResult, result);
+    assertEquals("A", StringFinderUtils.getName("A"));
+    
+    assertEquals("A", StringFinderUtils.getName(" A "));
+    
+    assertEquals("A", StringFinderUtils.getName("   A   "));
+    
+    assertEquals("B", StringFinderUtils.getName("   A.B   "));
+    
+    assertEquals("CbbVbb", StringFinderUtils.getName("   D.Addd.CbbVbb   "));
+    assertNotEquals("vbbvbb", StringFinderUtils.getName("   D.Addd.CbbVbb   "));
 
-    mainString = " A";
-    firstCharPosition = 1;
-    lastCharPosition = 2;
-    expResult = "A";
-    result = StringFinderUtils.getNameString(mainString, firstCharPosition, lastCharPosition);
-    assertEquals(expResult, result);
-    
-    mainString = "   A   ";
-    firstCharPosition = 3;
-    lastCharPosition = 4;
-    expResult = "A";
-    result = StringFinderUtils.getNameString(mainString, firstCharPosition, lastCharPosition);
-    assertEquals(expResult, result);
-    
-    mainString = "   A.B   ";
-    firstCharPosition = 5;
-    lastCharPosition = 6;
-    expResult = "B";
-    result = StringFinderUtils.getNameString(mainString, firstCharPosition, lastCharPosition);
-    assertEquals(expResult, result);
     
   }
 
@@ -153,34 +89,14 @@ public class StringFinderUtilsIT {
    * Test of isAllLowerCase method, of class StringFinderUtils.
    */
   @Test
-  public void testIsAllLowerCase_3args() {
+  public void testIsAllLowerCase() {
     System.out.println("isAllLowerCase");
-    CharSequence mainString = null;
-    int firstCharPosition = 0;
-    int lastCharPosition = 0;
-    boolean expResult = false;
-    boolean result = false;
-
-    mainString = "A";
-    firstCharPosition = 0;
-    lastCharPosition = 1;
-    expResult = false;
-    result = StringFinderUtils.isAllLowerCase(mainString, firstCharPosition, lastCharPosition);
-    assertEquals(expResult, result);
+  
+    assertFalse(StringFinderUtils.isAllLowerCase("A"));
+    assertTrue(StringFinderUtils.isAllLowerCase("a"));
     
-    mainString = "a";
-    firstCharPosition = 0;
-    lastCharPosition = 1;
-    expResult = true;
-    result = StringFinderUtils.isAllLowerCase(mainString, firstCharPosition, lastCharPosition);
-    assertEquals(expResult, result);
-    
-    mainString = "Aa";
-    firstCharPosition = 0;
-    lastCharPosition = 1;
-    expResult = false;
-    result = StringFinderUtils.isAllLowerCase(mainString, firstCharPosition, lastCharPosition);
-    assertEquals(expResult, result);
+    assertFalse(StringFinderUtils.isAllLowerCase("Aa"));
+    assertTrue(StringFinderUtils.isAllLowerCase("aa"));
   }
 
   /**
@@ -189,10 +105,39 @@ public class StringFinderUtilsIT {
   @Test
   public void testToUpperCase() {
     System.out.println("toUpperCase");
-    CharSequence mainString = "aSa";
-    CharSequence expResult = "ASA";
-    CharSequence result = StringFinderUtils.toUpperCase(mainString);
-    assertEquals(expResult, result);
+    
+    assertEquals("ASA", StringFinderUtils.toUpperCase("aSa"));
+    assertNotEquals("aSa", StringFinderUtils.toUpperCase("aSa"));
   }
+  
+ /**
+   * Test of contains method, of class StringFinderUtils.
+   */
+  @Test
+  public void testCompareWords() {
+    System.out.println("compareWords");
+
+    assertTrue(StringFinderUtils.contains("B", "B"));
+    assertFalse(StringFinderUtils.contains("B", "S"));
+
+    assertTrue(StringFinderUtils.contains("Baz", "B"));
+    assertFalse(StringFinderUtils.contains("Baz", "A"));
+
+    assertTrue(StringFinderUtils.contains("Baz", "Baz"));
+    assertFalse(StringFinderUtils.contains("Baz", "Bar"));
+    assertFalse(StringFinderUtils.contains("Baz", "Bz"));
+    
+    assertTrue(StringFinderUtils.contains("Baz", "B**z"));
+    assertFalse(StringFinderUtils.contains("Baz", "B*r"));
+    assertFalse(StringFinderUtils.contains("Baz", "B*a"));
+    
+    assertTrue(StringFinderUtils.contains("Bazfrdardgrazfrdar", "Ba*az"));
+    assertFalse(StringFinderUtils.contains("Bazfrdardgrazfrdar", "Ba*rar"));
+    
+    assertTrue(StringFinderUtils.contains("Baz", "B*"));
+    assertTrue(StringFinderUtils.contains("Baz", "B**"));
+    
+  }
+  
   
 }
