@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-javac src/ClassFinder.java
-java -cp src ClassFinder "$@"
-rm src/ClassFinder.class
