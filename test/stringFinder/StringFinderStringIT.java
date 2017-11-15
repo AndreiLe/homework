@@ -1,4 +1,3 @@
-
 package stringFinder;
 
 import java.util.ArrayList;
@@ -14,28 +13,10 @@ public class StringFinderStringIT {
   public StringFinderStringIT() {
   }
   
-  @BeforeClass
-  public static void setUpClass() {
-  }
-  
-  @AfterClass
-  public static void tearDownClass() {
-  }
-  
-  @Before
-  public void setUp() {
-  }
-  
-  @After
-  public void tearDown() {
-  }
 
-  /**
-   * Test of addMainString method, of class StringFinderString.
-   */
   @Test
   public void testAddMainString() {
-    System.out.println("addMainString");
+
     CharSequence mainString = null;
     StringFinderString instance = new StringFinderString();
     ArrayList<CharSequence> expResult = null;
@@ -73,13 +54,11 @@ public class StringFinderStringIT {
   
   @Test(expected = NullPointerException.class) 
   public void testAddMainStringExseption() {
-    System.out.println("testAddMainStringExseption");
 
     assertEquals(null, new StringFinderString().addMainString(null));
   }
   @Test
   public void testAddMainStringExseption2() {
-    System.out.println("testAddMainStringExseption2");
 
     try {
         new StringFinderString().addMainString(null);
@@ -90,12 +69,9 @@ public class StringFinderStringIT {
   }
   
 
-  /**
-   * Test of compareLastWords method, of class StringFinderString.
-   */
   @Test
   public void testCompareLastWords() {
-    System.out.println("compareLastWords");
+
     CharSequence patternString = null;
     CharSequence mainString = null;
     StringFinderString instance = null;
@@ -132,12 +108,8 @@ public class StringFinderStringIT {
   }
   
 
-  /**
-   * Test of getWordsListSize method, of class StringFinderString.
-   */
   @Test
   public void testGetWordsListSize() {
-    System.out.println("getWordsListSize");
     
     assertEquals(0, new StringFinderString().addMainString("").getWordsListSize());
     

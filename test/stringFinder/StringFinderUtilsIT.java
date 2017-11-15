@@ -12,28 +12,8 @@ public class StringFinderUtilsIT {
   public StringFinderUtilsIT() {
   }
   
-  @BeforeClass
-  public static void setUpClass() {
-  }
-  
-  @AfterClass
-  public static void tearDownClass() {
-  }
-  
-  @Before
-  public void setUp() {
-  }
-  
-  @After
-  public void tearDown() {
-  }
-
-  /**
-   * Test of getFirstChar method, of class StringFinderUtils.
-   */
   @Test
   public void testGetFirstChar() {
-    System.out.println("getFirstChar");
 
     assertEquals(0, StringFinderUtils.getFirstChar(null, 0));
     
@@ -48,12 +28,8 @@ public class StringFinderUtilsIT {
     assertEquals(8, StringFinderUtils.getFirstChar("abc.abc.abc", 11));
   }
 
-  /**
-   * Test of getLastChar method, of class StringFinderUtils.
-   */
   @Test
   public void testGetLastChar() {
-    System.out.println("getLastChar");
 
     assertEquals(1, StringFinderUtils.getLastChar("a"));
     
@@ -64,12 +40,8 @@ public class StringFinderUtilsIT {
     assertEquals(3, StringFinderUtils.getLastChar("abc     "));
   }
 
-  /**
-   * Test of getName method, of class StringFinderUtils.
-   */
   @Test
   public void testGetNameString() {
-    System.out.println("getNameString");
 
     assertEquals("A", StringFinderUtils.getName("A"));
     
@@ -85,12 +57,8 @@ public class StringFinderUtilsIT {
     
   }
 
-  /**
-   * Test of isAllLowerCase method, of class StringFinderUtils.
-   */
   @Test
   public void testIsAllLowerCase() {
-    System.out.println("isAllLowerCase");
   
     assertFalse(StringFinderUtils.isAllLowerCase("A"));
     assertTrue(StringFinderUtils.isAllLowerCase("a"));
@@ -99,23 +67,15 @@ public class StringFinderUtilsIT {
     assertTrue(StringFinderUtils.isAllLowerCase("aa"));
   }
 
-  /**
-   * Test of toUpperCase method, of class StringFinderUtils.
-   */
   @Test
   public void testToUpperCase() {
-    System.out.println("toUpperCase");
     
     assertEquals("ASA", StringFinderUtils.toUpperCase("aSa"));
     assertNotEquals("aSa", StringFinderUtils.toUpperCase("aSa"));
   }
   
- /**
-   * Test of contains method, of class StringFinderUtils.
-   */
   @Test
   public void testCompareWords() {
-    System.out.println("compareWords");
 
     assertTrue(StringFinderUtils.contains("B", "B"));
     assertFalse(StringFinderUtils.contains("B", "S"));

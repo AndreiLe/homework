@@ -12,29 +12,10 @@ public class StringPatternStringIT {
   
   public StringPatternStringIT() {
   }
-  
-  @BeforeClass
-  public static void setUpClass() {
-  }
-  
-  @AfterClass
-  public static void tearDownClass() {
-  }
-  
-  @Before
-  public void setUp() {
-  }
-  
-  @After
-  public void tearDown() {
-  }
-
-  /**
-   * Test of addMainString method, of class StringPatternString.
-   */
+ 
   @Test
   public void testAddMainString() {
-    System.out.println("addMainString");
+
     CharSequence mainString = null;
     StringPatternString instance = new StringPatternString();
     ArrayList<CharSequence> expResult = null;
@@ -87,17 +68,13 @@ public class StringPatternStringIT {
   
   @Test(expected = NullPointerException.class) 
   public void testAddMainStringExseption() {
-    System.out.println("testAddMainStringExseption");
 
     assertEquals(null, new StringPatternString().addMainString(null));
   }
 
-  /**
-   * Test of isLastCharacterWhitespace method, of class StringPatternString.
-   */
   @Test
   public void testIsLastCharacterWhitespace() {
-    System.out.println("isLastCharacterWhitespace");
+
     StringPatternString instance = null;
     boolean expResult = false;
     boolean result = false;
@@ -114,19 +91,13 @@ public class StringPatternStringIT {
 
   }
 
-  /**
-   * Test of getWordsListSize method, of class StringPatternString.
-   */
   @Test
   public void testGetWordsListSize() {
-    System.out.println("getWordsListSize");
     
     assertEquals(0, new StringPatternString().addMainString("").getWordsListSize());
     
     assertEquals(1, new StringPatternString().addMainString("B").getWordsListSize());
   }
-  
-  
 
   
 }
