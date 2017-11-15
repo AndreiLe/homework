@@ -2,7 +2,9 @@ import java.io.IOException;
 import static java.lang.System.out;
 import static java.nio.file.Files.readAllLines;
 import static java.nio.file.Paths.get;
+import java.util.Comparator;
 import stringFinder.StringFinder;
+import stringFinder.StringFinderUtils;
 import static stringFinder.StringFinderUtils.getName;
 
 class ClassFinder {
@@ -13,7 +15,7 @@ class ClassFinder {
     if (args2 != null && args2.length > 0) {
       args = args2;
     }else{
-      args = new String[]{"F:\\Desktop\\работа\\codeborne\\work 1\\javaHome\\src\\classes.txt", "'B*r'"};
+      args = new String[]{"F:\\Desktop\\работа\\codeborne\\work 1\\javaHome\\classes.txt", "'B*r'"};
     }
          
 	StringFinder stringFinder = new StringFinder();
@@ -24,10 +26,10 @@ class ClassFinder {
                     stringFinder
                             .addFinderText(s)
                             .contains(args[1])
-            ).sorted((String s, String s2) -> 
-                            getName(s)
-                                    .toString()
-                                    .compareTo(getName(s2).toString())
+            ).sorted(
+                    Comparator.comparing((String s) -> 
+                            getName(s).toString()
+            )
             )
             .forEach(s -> 
                     out.println(s)

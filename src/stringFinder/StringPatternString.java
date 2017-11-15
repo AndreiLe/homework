@@ -7,7 +7,6 @@ class StringPatternString {
 
   private int firstCharPosition = 0;
   private int lastCharPosition = 0;
-  private boolean isAllLowerCase = false;
   private CharSequence mainString = null;
   private ArrayList<CharSequence> wordsList = null;
 
@@ -23,7 +22,7 @@ class StringPatternString {
     this.lastCharPosition = getLastChar(this.mainString);
     this.firstCharPosition = getFirstChar(this.mainString, lastCharPosition);
 
-    this.isAllLowerCase = isAllLowerCase(this.mainString, this.firstCharPosition, this.lastCharPosition);
+    boolean isAllLowerCase = isAllLowerCase(this.mainString, this.firstCharPosition, this.lastCharPosition);
     if (isAllLowerCase) {
       this.mainString = toUpperCase(this.mainString);
     }
@@ -55,7 +54,7 @@ class StringPatternString {
 
   private final ArrayList<CharSequence> getAllPatternWords() {
     wordsList = new ArrayList<CharSequence>();
-    char nameChar = (char) 0;
+    char nameChar;
     StringBuilder word = null;
 
     int wordsCount = 0;
@@ -78,11 +77,8 @@ class StringPatternString {
         continue;
       }
       //add letter to old word
-      if (Character.isLowerCase(nameChar) || (nameChar == '*')) {
-        word.append(nameChar);
-        wordsCount++;
-        continue;
-      }
+      word.append(nameChar);
+      wordsCount++;
     }
     //add last word alwais
     if (word != null) {

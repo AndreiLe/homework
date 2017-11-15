@@ -5,9 +5,9 @@ import static stringFinder.StringFinderUtils.*;
 
 public class StringFinderString {
 
-  private int firstCharPosition = 0;
-  private int lastCharPosition = 0;
-  private CharSequence mainString = null;
+  private int firstCharPosition;
+  private int lastCharPosition;
+  private CharSequence mainString;
   private ArrayList<CharSequence> wordsList;
 
   public StringFinderString() {
@@ -27,9 +27,9 @@ public class StringFinderString {
     return this;
   }
 
-  private final ArrayList<CharSequence> getAllWords() {
-    wordsList = new ArrayList<CharSequence>();
-    char nameChar = (char) 0;
+  private ArrayList<CharSequence> getAllWords() {
+    wordsList = new ArrayList();
+    char nameChar;
     StringBuilder word = null;
 
     int wordsCount = 0;
@@ -52,11 +52,8 @@ public class StringFinderString {
         continue;
       }
       //add letter to old word
-      if (Character.isLowerCase(nameChar)) {
-        word.append(nameChar);
-        wordsCount++;
-        continue;
-      }
+      word.append(nameChar);
+      wordsCount++;
     }
     //add last word alwais
     if (word != null) {

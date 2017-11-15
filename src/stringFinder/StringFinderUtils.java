@@ -4,11 +4,10 @@ public class StringFinderUtils {
 
   public static final int getFirstChar(CharSequence string, int lastChar) {
     int L = lastChar;
-    char stringChar = (char) 0;
+    char stringChar;
 
     while (L-- > 0) {
       stringChar = string.charAt(L);
-//      System.out.println(stringChar);
       if (!Character.isLetterOrDigit(stringChar) && (stringChar != '*')) {
         return ++L;
       }
@@ -22,11 +21,10 @@ public class StringFinderUtils {
 
   public static final int getLastChar(CharSequence string) {
     int L = string.length();
-    char stringChar = (char) 0;
+    char stringChar;
 
     while (L-- > 0) {
       stringChar = string.charAt(L);
-//      System.out.println(stringChar);
       if (Character.isLetterOrDigit(stringChar) || (stringChar == '*')) {
         return ++L;
       }
@@ -43,7 +41,6 @@ public class StringFinderUtils {
 
   public static final CharSequence getName(CharSequence mainString, int firstCharPosition, int lastCharPosition) {
     CharSequence nameString = mainString.subSequence(firstCharPosition, lastCharPosition);
-    //System.out.println(nameString);
     return nameString;
   }
 
@@ -56,7 +53,7 @@ public class StringFinderUtils {
   public static final boolean isAllLowerCase(CharSequence mainString, int firstCharPosition, int lastCharPosition) {
 
     int L = mainString.length();
-    char stringChar = (char) 0;
+    char stringChar;
 
     while (L-- > 0) {
       stringChar = mainString.charAt(L);

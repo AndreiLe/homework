@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class StringFinder {
 
-  private StringFinderString finderText = new StringFinderString();
-  private StringPatternString patternText = new StringPatternString();
+  private final StringFinderString finderText = new StringFinderString();
+  private final StringPatternString patternText = new StringPatternString();
 
   public StringFinder() {
   }
@@ -25,7 +25,7 @@ public class StringFinder {
       return true;
     }
     
-    boolean result = false;
+    boolean result;
 
     this.patternText.addMainString(s);
 
