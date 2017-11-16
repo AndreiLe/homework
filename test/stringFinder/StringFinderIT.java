@@ -13,59 +13,31 @@ public class StringFinderIT {
   }
   
   @Test
-  public void testContains() {
+  public void testContainsHomeworkRules() {
     
-    CharSequence s = null;
-    StringFinder instance = null;
-    boolean result = false;
+    StringFinder instance;
  
-    //homework 
-    instance = new StringFinder("a.b.FooBarBaz");
-    result = instance.contains("FB");
-    assertEquals(true, result);
-    result = instance.contains("FoBa");
-    assertEquals(true, result);
-    result = instance.contains("FBar");
-    assertEquals(true, result);
+    assertTrue(new StringFinder("a.b.FooBarBaz").contains("FB"));
+    assertTrue(new StringFinder("a.b.FooBarBaz").contains("FoBa"));
+    assertTrue(new StringFinder("a.b.FooBarBaz").contains("FBar"));
     
-    instance = new StringFinder("c.d.FooBar");
-    result = instance.contains("FB");
-    assertEquals(true, result);
-    result = instance.contains("FoBa");
-    assertEquals(true, result);
-    result = instance.contains("FBar");
-    assertEquals(true, result);
+    assertTrue(new StringFinder("c.d.FooBar").contains("FB"));
+    assertTrue(new StringFinder("c.d.FooBar").contains("FoBa"));
+    assertTrue(new StringFinder("c.d.FooBar").contains("FBar"));
     
-    instance = new StringFinder("c.d.FooBar");
-    result = instance.contains("BF");
-    assertEquals(false, result);
+    assertFalse(new StringFinder("c.d.FooBar").contains("BF"));
     
-    instance = new StringFinder("FooBarBaz");
-    result = instance.contains("fbb");
-    assertEquals(true, result);
-    result = instance.contains("fBb");
-    assertEquals(false, result);
+    assertTrue(new StringFinder("FooBarBaz").contains("fbb"));
+    assertFalse(new StringFinder("FooBarBaz").contains("fBb"));
     
-    instance = new StringFinder("FooBar");
-    result = instance.contains("FBar ");
-    assertEquals(true, result);
-    instance = new StringFinder("FooBarBaz");
-    result = instance.contains("FBar ");
-    assertEquals(false, result);
+    assertTrue(new StringFinder("FooBar").contains("FBar "));
+    assertFalse(new StringFinder("FooBarBaz").contains("FBar "));
     
-    instance = new StringFinder("FooBarBaz");
-    result = instance.contains("B*rBaz");
-    assertEquals(true, result);
-    instance = new StringFinder("BrBaz");
-    result = instance.contains("B*rBaz");
-    assertEquals(false, result);
+    assertTrue(new StringFinder("FooBarBaz").contains("B*rBaz"));
+    assertFalse(new StringFinder("BrBaz").contains("B*rBaz"));
     
-    instance = new StringFinder("a.b.FooBarBaz");
-    result = instance.contains("Bar ");
-    assertEquals(false, result);
-    instance = new StringFinder("BarBaz");
-    result = instance.contains("Bar");
-    assertEquals(true, result);
+    assertFalse(new StringFinder("a.b.FooBarBaz").contains("Bar "));
+    assertTrue(new StringFinder("BarBaz").contains("Bar"));
   }
   
 }
