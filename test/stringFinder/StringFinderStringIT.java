@@ -1,6 +1,7 @@
 package stringFinder;
 
 import java.util.ArrayList;
+import static java.util.Arrays.asList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,45 +11,20 @@ import static org.junit.Assert.*;
 
 public class StringFinderStringIT {
   
-  public StringFinderStringIT() {
-  }
-  
-
   @Test
   public void testAddMainString() {
 
-    CharSequence mainString = null;
-    StringFinderString instance = new StringFinderString();
-    ArrayList<CharSequence> expResult = null;
-    ArrayList<CharSequence> result = null;
+    assertEquals(asList("A"), new StringFinderString().addMainString("A").getWordList());
+    assertEquals(asList("a"), new StringFinderString().addMainString("a").getWordList());
     
-    mainString = "A";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("A");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
+    assertNotEquals(asList("A"), new StringFinderString().addMainString("a").getWordList());
+    assertNotEquals(asList("a"), new StringFinderString().addMainString("A").getWordList());
     
-    mainString = "a";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("a");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
-    
-    mainString = "ABC";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("A");
-    expResult.add("B");
-    expResult.add("C");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
-    
-    mainString = "AaBbcC";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("Aa");
-    expResult.add("Bbc");
-    expResult.add("C");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
+    assertEquals(asList("A","B","C"), new StringFinderString().addMainString("ABC").getWordList());
+    assertNotEquals(asList("A","B","C"), new StringFinderString().addMainString("ABc").getWordList());
+
+    assertEquals(asList("Aa","Bbc","C"), new StringFinderString().addMainString("AaBbcC").getWordList());
+    assertNotEquals(asList("Aa","Bbc","V"), new StringFinderString().addMainString("AaBbcC").getWordList());
 
   }
   
@@ -72,39 +48,17 @@ public class StringFinderStringIT {
   @Test
   public void testCompareLastWords() {
 
-    CharSequence patternString = null;
-    CharSequence mainString = null;
-    StringFinderString instance = null;
-    boolean expResult = false;
-    boolean result = false;
+    assertTrue(new StringFinderString().addMainString("a").compareLastWords("a"));
+    assertFalse(new StringFinderString().addMainString("A").compareLastWords("a"));
     
-    patternString = "a";
-    mainString = "a";
-    instance = new StringFinderString().addMainString(mainString);
-    expResult = true;
-    result = instance.compareLastWords(patternString);
-    assertEquals(expResult, result);
+    assertTrue(new StringFinderString().addMainString("Aa").compareLastWords("Aa"));
+    assertTrue(new StringFinderString().addMainString("Aa").compareLastWords("A"));
+    assertFalse(new StringFinderString().addMainString("A").compareLastWords("Aa"));
     
-    patternString = "a";
-    mainString = "A";
-    instance = new StringFinderString().addMainString(mainString);
-    expResult = false;
-    result = instance.compareLastWords(patternString);
-    assertEquals(expResult, result);
+    assertTrue(new StringFinderString().addMainString("BbAa").compareLastWords("Aa"));
     
-    patternString = "Aa";
-    mainString = "Aa";
-    instance = new StringFinderString().addMainString(mainString);
-    expResult = true;
-    result = instance.compareLastWords(patternString);
-    assertEquals(expResult, result);
-    
-    patternString = "Aa";
-    mainString = "BbAa";
-    instance = new StringFinderString().addMainString(mainString);
-    expResult = true;
-    result = instance.compareLastWords(patternString);
-    assertEquals(expResult, result);
+     assertTrue(new StringFinderString().addMainString("Baz").compareLastWords("B*z"));
+     assertFalse(new StringFinderString().addMainString("Baz").compareLastWords("B*a"));
   }
   
 
@@ -114,6 +68,10 @@ public class StringFinderStringIT {
     assertEquals(0, new StringFinderString().addMainString("").getWordsListSize());
     
     assertEquals(1, new StringFinderString().addMainString("B").getWordsListSize());
+    
+    assertEquals(3, new StringFinderString().addMainString("ABC").getWordsListSize());
+    
+    assertEquals(3, new StringFinderString().addMainString("AaaBbC").getWordsListSize());
   }
   
 
