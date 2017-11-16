@@ -28,7 +28,7 @@ public class StringFinderString {
   }
 
   private ArrayList<CharSequence> getAllWords() {
-    wordsList = new ArrayList();
+    wordsList = new ArrayList<CharSequence>();
     char nameChar;
     StringBuilder word = null;
 

@@ -5,7 +5,7 @@ set "PATH=%PATH%;C:\Program Files\Java\jdk1.8.0_131\bin"
 cd /d %~dp0
 echo Write "<filename> '<pattern>'"
 set /p pattern=
-javac src/*.java src/stringFinder/*.java
+javac src/*.java src/stringFinder/*.java -Xlint
 java -cp src ClassFinder %pattern%
 
 del "%cd%\src\ClassFinder.class"
