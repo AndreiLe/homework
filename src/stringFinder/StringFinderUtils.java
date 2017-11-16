@@ -3,16 +3,16 @@ package stringFinder;
 public class StringFinderUtils {
 
   public static final int getFirstChar(CharSequence string, int lastChar) {
-    int L = lastChar;
+    int lastCharPosition = lastChar;
     char stringChar;
 
-    while (L-- > 0) {
-      stringChar = string.charAt(L);
+    while (lastCharPosition-- > 0) {
+      stringChar = string.charAt(lastCharPosition);
       if (!Character.isLetterOrDigit(stringChar) && (stringChar != '*')) {
-        return ++L;
+        return ++lastCharPosition;
       }
       if (stringChar == '.') {
-        return ++L;
+        return ++lastCharPosition;
       }
     }
 
@@ -20,13 +20,13 @@ public class StringFinderUtils {
   }
 
   public static final int getLastChar(CharSequence string) {
-    int L = string.length();
+    int stringLength = string.length();
     char stringChar;
 
-    while (L-- > 0) {
-      stringChar = string.charAt(L);
+    while (stringLength-- > 0) {
+      stringChar = string.charAt(stringLength);
       if (Character.isLetterOrDigit(stringChar) || (stringChar == '*')) {
-        return ++L;
+        return ++stringLength;
       }
     }
 
@@ -52,11 +52,11 @@ public class StringFinderUtils {
 
   public static final boolean isAllLowerCase(CharSequence mainString, int firstCharPosition, int lastCharPosition) {
 
-    int L = mainString.length();
+    int mainStringLength = mainString.length();
     char stringChar;
 
-    while (L-- > 0) {
-      stringChar = mainString.charAt(L);
+    while (mainStringLength-- > 0) {
+      stringChar = mainString.charAt(mainStringLength);
       if (Character.isUpperCase(stringChar)) {
         return false;
       }
@@ -78,22 +78,30 @@ public class StringFinderUtils {
     }
     String tempFinderString = finderString.toString();
     String tempPatternString = patternString.toString();
-
-    //find substring with *
+    
     int resultNum = tempPatternString.indexOf("*");
     if (resultNum > 0) {
+      boolean result = containsPatternWithAterisk(tempFinderString, tempPatternString);
+      return result;
+    }
+
+    boolean result = containsSimplePattern(tempFinderString, tempPatternString);
+    return result;
+  }
+  
+  private static boolean containsPatternWithAterisk(String tempFinderString, String tempPatternString) {
       String[] patternStringArr = tempPatternString.split("\\*");
-      int patternStringArrL = patternStringArr.length;
+      int patternStringArrLength = patternStringArr.length;
       String wordPart = null;
       int wordPartPosition = 0;
       int wordPartL = 0;
-      for (int i = 0; i < patternStringArrL; i++) {
+      for (int i = 0; i < patternStringArrLength; i++) {
         wordPart = patternStringArr[i];
         wordPartL = wordPart.length();
         if (wordPartL == 0) {
           continue;
         }
-        resultNum = tempFinderString.indexOf(wordPart, wordPartPosition);
+        int resultNum = tempFinderString.indexOf(wordPart, wordPartPosition);
         if (resultNum == -1) {
           return false;
         }
@@ -103,10 +111,10 @@ public class StringFinderUtils {
         wordPartPosition += resultNum + wordPartL + 1;
       }
       return true;
-    }
-
-    //default find substring
-    resultNum = tempFinderString.indexOf(tempPatternString);
+  }
+  
+  private static boolean containsSimplePattern(String tempFinderString, String tempPatternString) {
+    int resultNum = tempFinderString.indexOf(tempPatternString);
     if (resultNum == 0) {
       return true;
     }

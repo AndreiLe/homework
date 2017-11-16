@@ -29,7 +29,6 @@ class StringPatternString {
 
     getAllPatternWords();
 
-    //getNameString(this.mainString);
     return this;
   }
 
@@ -40,19 +39,19 @@ class StringPatternString {
   }
 
   public final boolean isLastCharacterWhitespace() {
-    int mainStringL = this.mainString.length();
-    int L = lastCharPosition + 1;
-    if (L > mainStringL) {
-      L = mainStringL;
+    int mainStringLength = this.mainString.length();
+    int whitespacePosition = lastCharPosition + 1;
+    if (whitespacePosition > mainStringLength) {
+      whitespacePosition = mainStringLength;
     }
-    char lastMainStringChar = this.mainString.charAt(L - 1);
+    char lastMainStringChar = this.mainString.charAt(whitespacePosition - 1);
     if (Character.isWhitespace(lastMainStringChar)) {
       return true;
     }
     return false;
   }
 
-  private final ArrayList<CharSequence> getAllPatternWords() {
+  private void getAllPatternWords() {
     wordsList = new ArrayList<CharSequence>();
     char nameChar;
     StringBuilder word = null;
@@ -61,13 +60,12 @@ class StringPatternString {
     for (int i = this.firstCharPosition; i < this.lastCharPosition; i++) {
       nameChar = this.mainString.charAt(i);
 
-      //create first word alwais
       if (wordsCount == 0) {
         word = new StringBuilder(1).append(nameChar);
         wordsCount++;
         continue;
       }
-      //create new word
+
       if (Character.isUpperCase(nameChar)) {
         CharSequence listWord = word.toString();
         wordsList.add(listWord);
@@ -76,17 +74,15 @@ class StringPatternString {
         wordsCount++;
         continue;
       }
-      //add letter to old word
+
       word.append(nameChar);
       wordsCount++;
     }
-    //add last word alwais
+
     if (word != null) {
       CharSequence listWord = word.toString();
       wordsList.add(listWord);
     }
-
-    return wordsList;
   }
 
   public final int getWordsListSize() {

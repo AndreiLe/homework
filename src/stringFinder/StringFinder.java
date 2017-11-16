@@ -19,44 +19,39 @@ public class StringFinder {
     return this;
   }
 
-  public final boolean contains(CharSequence s) {
+  public final boolean contains(CharSequence patternString) {
     
-    if (s == null || s == "" || s == "''"){
+    if (patternString == null || patternString == "" || patternString == "''"){
       return true;
     }
     
-    boolean result;
-
-    this.patternText.addMainString(s);
+    this.patternText.addMainString(patternString);
 
     if (this.finderText == null || this.finderText.getWordsListSize() == 0 || this.patternText.getWordsListSize() == 0) {
       return false;
     }
 
-    //first check Whitespace in the end
     boolean isLastCharacterWhitespace = this.patternText.isLastCharacterWhitespace();
     if (isLastCharacterWhitespace) {
-      result = this.finderText.compareLastWords(this.patternText.getLastNameWord());
-      if (result == false) {
+      boolean result = this.finderText.compareLastWords(this.patternText.getLastNameWord());
+      if (!result) {
         return false;
       }
     }
 
-    //second check words arrays size
     int patternWordListSize = this.patternText.getWordsListSize();
     int finderWordListSize = this.finderText.getWordsListSize();
     if (finderWordListSize < patternWordListSize) {
       return false;
     }
 
-    //third compare all words
     ArrayList<CharSequence> patternWordList = this.patternText.getWordList();
     ArrayList<CharSequence> finderWordList = this.finderText.getWordList();
-    CharSequence finderWord = null;
-    CharSequence patternWord = null;
+    CharSequence finderWord;
+    CharSequence patternWord;
     int i = 0;
     int j = 0;
-    result = false;
+    boolean result;
     lab1:
     for (; i < patternWordListSize; i++) {
       patternWord = patternWordList.get(i);

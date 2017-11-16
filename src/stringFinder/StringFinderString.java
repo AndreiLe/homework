@@ -27,7 +27,7 @@ public class StringFinderString {
     return this;
   }
 
-  private ArrayList<CharSequence> getAllWords() {
+  private void getAllWords() {
     wordsList = new ArrayList<CharSequence>();
     char nameChar;
     StringBuilder word = null;
@@ -36,13 +36,12 @@ public class StringFinderString {
     for (int i = this.firstCharPosition; i < this.lastCharPosition; i++) {
       nameChar = this.mainString.charAt(i);
 
-      //create first word alwais
       if (wordsCount == 0) {
         word = new StringBuilder(1).append(nameChar);
         wordsCount++;
         continue;
       }
-      //create new word
+
       if (Character.isUpperCase(nameChar)) {
         CharSequence listWord = word.toString();
         wordsList.add(listWord);
@@ -51,17 +50,15 @@ public class StringFinderString {
         wordsCount++;
         continue;
       }
-      //add letter to old word
+
       word.append(nameChar);
       wordsCount++;
     }
-    //add last word alwais
+
     if (word != null) {
       CharSequence listWord = word.toString();
       wordsList.add(listWord);
     }
-
-    return wordsList;
   }
 
   public final int getWordsListSize() {
