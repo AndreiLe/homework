@@ -1,6 +1,7 @@
 package stringFinder;
 
 import java.util.ArrayList;
+import static java.util.Arrays.asList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -9,61 +10,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StringPatternStringIT {
-  
-  public StringPatternStringIT() {
-  }
- 
+
   @Test
   public void testAddMainString() {
+    assertEquals(asList("A"), new StringPatternString().addMainString("A").getWordList());
 
-    CharSequence mainString = null;
-    StringPatternString instance = new StringPatternString();
-    ArrayList<CharSequence> expResult = null;
-    ArrayList<CharSequence> result = null;
-    
-    mainString = "A";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("A");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
-    
-    mainString = "a";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("A");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
-    
-    mainString = "ABC";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("A");
-    expResult.add("B");
-    expResult.add("C");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
-    
-    mainString = "AaBbcC";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("Aa");
-    expResult.add("Bbc");
-    expResult.add("C");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
-    
-    mainString = "AaBbcC ";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("Aa");
-    expResult.add("Bbc");
-    expResult.add("C");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
-    
-    mainString = "AaB*cC ";
-    expResult = new ArrayList<CharSequence>();
-    expResult.add("Aa");
-    expResult.add("B*c");
-    expResult.add("C");
-    result = instance.addMainString(mainString).getWordList();
-    assertEquals(expResult, result);
+    assertEquals(asList("A"), new StringPatternString().addMainString("a").getWordList());
+
+    assertEquals(asList("A","A","A"), new StringPatternString().addMainString("AAA").getWordList());
+
+    assertEquals(asList("Aa","Bbc","C"), new StringPatternString().addMainString("AaBbcC").getWordList());
+
+    assertEquals(asList("Aa","B*c","C"), new StringPatternString().addMainString("AaB*cC ").getWordList());
   }
   
   @Test(expected = NullPointerException.class) 
@@ -74,21 +32,10 @@ public class StringPatternStringIT {
 
   @Test
   public void testIsLastCharacterWhitespace() {
-
-    StringPatternString instance = null;
-    boolean expResult = false;
-    boolean result = false;
     
-    instance = new StringPatternString().addMainString("ABC");
-    expResult = false;
-    result = instance.isLastCharacterWhitespace();
-    assertEquals(expResult, result);
+    assertFalse(new StringPatternString().addMainString("ABC").isLastCharacterWhitespace());
     
-    instance = new StringPatternString().addMainString("ABC ");
-    expResult = true;
-    result = instance.isLastCharacterWhitespace();
-    assertEquals(expResult, result);
-
+    assertTrue(new StringPatternString().addMainString("ABC ").isLastCharacterWhitespace());
   }
 
   @Test
