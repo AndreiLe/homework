@@ -75,7 +75,7 @@ public class StringFinderUtilsIT {
   }
   
   @Test
-  public void testCompareWords() {
+  public void testContainsSimplePattern() {
 
     assertTrue(StringFinderUtils.contains("B", "B"));
     assertFalse(StringFinderUtils.contains("B", "S"));
@@ -86,7 +86,10 @@ public class StringFinderUtilsIT {
     assertTrue(StringFinderUtils.contains("Baz", "Baz"));
     assertFalse(StringFinderUtils.contains("Baz", "Bar"));
     assertFalse(StringFinderUtils.contains("Baz", "Bz"));
-    
+  }
+  
+  @Test
+  public void testContainsPatternWithAsterisk() {
     assertTrue(StringFinderUtils.contains("Baz", "B**z"));
     assertFalse(StringFinderUtils.contains("Baz", "B*r"));
     assertFalse(StringFinderUtils.contains("Baz", "B*a"));
@@ -96,7 +99,6 @@ public class StringFinderUtilsIT {
     
     assertTrue(StringFinderUtils.contains("Baz", "B*"));
     assertTrue(StringFinderUtils.contains("Baz", "B**"));
-    
   }
   
   
