@@ -70,14 +70,12 @@ public class StringFinderString {
 
   public final CharSequence getLastNameWord() {
     int wordsListSize = wordsList.size();
-    CharSequence lastNameWord = wordsList.get(wordsListSize - 1);
-    return lastNameWord;
+    return wordsList.get(wordsListSize - 1);
   }
 
   public final boolean compareLastWords(CharSequence patternString) {
     CharSequence finderString = this.getLastNameWord();
-    boolean result = contains(finderString, patternString);
-    return result;
+    return contains(finderString, patternString);
   }
 
   public final ArrayList<CharSequence> getWordList() {

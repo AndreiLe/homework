@@ -34,8 +34,7 @@ class StringPatternString {
 
   public final CharSequence getLastNameWord() {
     int wordsListSize = wordsList.size();
-    CharSequence lastNameWord = wordsList.get(wordsListSize - 1);
-    return lastNameWord;
+    return wordsList.get(wordsListSize - 1);
   }
 
   public final boolean isLastCharacterWhitespace() {

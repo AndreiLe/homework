@@ -20,14 +20,18 @@ public class StringFinder {
   }
 
   public final boolean contains(CharSequence patternString) {
-    
-    if (patternString == null || patternString == "" || patternString == "''"){
+
+    if (patternString == null
+        || patternString == ""
+        || patternString == "''") {
       return true;
     }
-    
+
     this.patternText.addMainString(patternString);
 
-    if (this.finderText == null || this.finderText.getWordsListSize() == 0 || this.patternText.getWordsListSize() == 0) {
+    if (this.finderText == null
+        || this.finderText.getWordsListSize() == 0
+        || this.patternText.getWordsListSize() == 0) {
       return false;
     }
 

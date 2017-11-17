@@ -40,8 +40,7 @@ public class StringFinderUtils {
   }
 
   public static final CharSequence getName(CharSequence mainString, int firstCharPosition, int lastCharPosition) {
-    CharSequence nameString = mainString.subSequence(firstCharPosition, lastCharPosition);
-    return nameString;
+    return mainString.subSequence(firstCharPosition, lastCharPosition);
   }
 
   public static final boolean isAllLowerCase(CharSequence mainString) {
@@ -51,7 +50,6 @@ public class StringFinderUtils {
   }
 
   public static final boolean isAllLowerCase(CharSequence mainString, int firstCharPosition, int lastCharPosition) {
-
     int mainStringLength = mainString.length();
     char stringChar;
 
@@ -81,12 +79,10 @@ public class StringFinderUtils {
     
     int resultNum = tempPatternString.indexOf("*");
     if (resultNum > 0) {
-      boolean result = containsPatternWithAterisk(tempFinderString, tempPatternString);
-      return result;
+      return containsPatternWithAterisk(tempFinderString, tempPatternString);
     }
 
-    boolean result = containsSimplePattern(tempFinderString, tempPatternString);
-    return result;
+    return  containsSimplePattern(tempFinderString, tempPatternString);
   }
   
   private static boolean containsPatternWithAterisk(String tempFinderString, String tempPatternString) {

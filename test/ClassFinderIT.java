@@ -30,7 +30,7 @@ public class ClassFinderIT {
       System.err.close();
   }
 
-  @Ignore("too slow") @Test
+  @Test
   public void testMain() throws Exception {
     
     String classesPath = getClass().getClassLoader().getResource("classesTest.txt").getPath();
