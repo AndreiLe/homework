@@ -55,9 +55,7 @@ public class StringFinderUtils {
 
     while (mainStringLength-- > 0) {
       stringChar = mainString.charAt(mainStringLength);
-      if (Character.isUpperCase(stringChar)) {
-        return false;
-      }
+      if (Character.isUpperCase(stringChar)) return false;
     }
 
     return true;

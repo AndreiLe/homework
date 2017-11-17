@@ -38,16 +38,12 @@ public class StringFinder {
     boolean isLastCharacterWhitespace = this.patternText.isLastCharacterWhitespace();
     if (isLastCharacterWhitespace) {
       boolean result = this.finderText.compareLastWords(this.patternText.getLastNameWord());
-      if (!result) {
-        return false;
-      }
+      if (!result) return false;
     }
 
     int patternWordListSize = this.patternText.getWordsListSize();
     int finderWordListSize = this.finderText.getWordsListSize();
-    if (finderWordListSize < patternWordListSize) {
-      return false;
-    }
+    if (finderWordListSize < patternWordListSize) return false;
 
     ArrayList<CharSequence> patternWordList = this.patternText.getWordList();
     ArrayList<CharSequence> finderWordList = this.finderText.getWordList();
